@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初代DQ1風 ふっかつのじゅもん生成器</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Courier New", Courier, monospace, "Hiragino Kaku Gothic ProN", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .window {
+            border: 4px solid #fff;
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            background-color: #000;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        h1 {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 0;
+            border-bottom: 2px dashed #fff;
+            padding-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .jumon-display {
+            background-color: #111;
+            border: 2px solid #fff;
+            padding: 15px;
+            min-height: 50px;
+            font-size: 22px;
+            text-align: center;
+            letter-spacing: 3px;
+            word-break: break-all;
+            margin: 20px 0;
+            color: #ff0;
+            text-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+        }
+        .btn-container {
+            text-align: center;
+        }
+        button {
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .note {
+            font-size: 11px;
+            color: #aaa;
+            text-align: center;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        .copyright {
+            font-size: 11px;
+            color: #888;
+            text-align: center;
+            margin-top: 15px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="window">
+    <h1>ふっかつのじゅもん を きく</h1>
+    <p style="font-size: 14px; line-height: 1.6;">おうじょのあいと ひかりのたまを たずさえ、いま みずからの みちを ひらくがよい！</p>
+    
+    <div class="jumon-display" id="jumonBox">じゅもんを おしえてもらう</div>
+    
+    <div class="btn-container">
+        <button onclick="generateJumon()">じゅもんを みる</button>
+    </div>
+    
+    <div class="note">
+        ※このアプリは雰囲気を楽しむためのランダム生成器です。<br>
+        実際のファミコン版『ドラゴンクエストI』に入力しても使用できません。
+    </div>
+
+    <!-- コピーライトを追加 -->
+    <div class="copyright">
+        © mas-king
+    </div>
+</div>
+
+<script>
+    // 初代ドラクエ1の「ふっかつのじゅもん」で使用される54文字
+    const dqCharList = [
+        "あ", "い", "う", "え", "お", 
+        "か", "き", "く", "け", "こ", 
+        "さ", "し", "す", "せ", "そ", 
+        "た", "ち", "つ", "て", "と", 
+        "な", "に", "ぬ", "ね", "の", 
+        "は", "ひ", "ふ", "へ", "ほ", 
+        "ま", "み", "む", "め", "も", 
+        "や", "ゆ", "よ", 
+        "ら", "り", "る", "れ", "ろ", 
+        "わ", "を", "ん",
+        "っ", "ゃ", "ゅ", "ょ",
+        "が", "ぎ", "ぐ", "げ", "ご",
+        "ざ", "じ", "ず", "ぜ", "ぞ",
+        "だ", "ぢ", "づ", "で", "ど",
+        "ば", "び", "ぶ", "べ", "ぼ",
+        "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"
+    ];
+
+    function generateJumon() {
+        let jumon = "";
+        const length = 20; // DQ1の復活の呪文は20文字
+        
+        for (let i = 0; i < length; i++) {
+            // ランダムに文字を選択
+            const randomIndex = Math.floor(Math.random() * dqCharList.length);
+            jumon += dqCharList[randomIndex];
+            
+            // 10文字目にスペースを入れる
+            if (i === 9) {
+                jumon += " ";
+            }
+        }
+        
+        // 画面に表示
+        document.getElementById("jumonBox").innerText = jumon;
+    }
+</script>
+
+</body>
+</html>
